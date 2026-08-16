@@ -1,0 +1,23 @@
+{
+  "name": "longrangesaberduels",
+  "version": "0.1.0",
+  "description": "LONG RANGE SABER DUELS — a WebXR duel on the moon: glass sabers full of glowing liquid, shaken to replenish. Hold trigger, swing, release, and the blade throws a line of energy shaped like your swing that flies the way you cut. Built on the Immersive Web SDK.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@iwsdk/core": "0.4.2",
+    "three": "0.184.0"
+  },
+  "devDependencies": {
+    "@iwsdk/vite-plugin-dev": "0.4.2",
+    "@types/three": "0.184.0",
+    "typescript": "^5.6.0",
+    "vite": "^7.0.0"
+  }
+}
