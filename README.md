@@ -1,9 +1,9 @@
 # LONG RANGE SABER DUELS
 
-A WebXR duel on the moon. Two fighters stand on octagonal pads seven and a half
-metres apart — far enough that no swing can ever reach the other. Each hand
-holds a **glass saber** with glowing liquid visibly sloshing inside it, and that
-liquid is the ammunition.
+A WebXR duel on the moon. Two fighters stand face to face on octagonal pads,
+just far enough apart that no swing can ever reach the other — reach is about
+1.5 m each, the gap is 4.2 m. Each hand holds a **glass saber** with glowing
+liquid visibly sloshing inside it, and that liquid is the ammunition.
 
 You attack by **holding the trigger, swinging, and letting go**. The blade
 records the surface it carves through the air, and on release that surface is
@@ -66,8 +66,8 @@ Three details in `src/combat/sweep.ts` earn their keep:
 - **The release direction comes from a quadratic fit** through the last three
   tip samples, evaluated at the newest one. Averaging velocity over a window —
   the obvious implementation — points somewhere back along the arc instead of
-  down the tangent you just let go of, and at seven metres a brisk swing missed
-  by several metres. The fit brings that error to about a tenth of a degree.
+  down the tangent you just let go of — a brisk swing missed by metres. The fit
+  brings that error to about a tenth of a degree.
 
 One thing is deliberately *not* physical. A swing is a rotation, so the surface
 it carves is a flat fan and the release tangent lies inside that fan — thrown

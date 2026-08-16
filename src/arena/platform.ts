@@ -177,8 +177,11 @@ export function makePlatform(color: number): Group {
   group.add(mark);
 
   // Underlight: the pad throws its own colour onto the dust it stands on.
-  const glow = new PointLight(color, 2.4, 4.5, 2);
-  glow.position.y = 0.12;
+  // Kept short-range and low on purpose — it is meant to pool on the deck and
+  // the ground around it, not to wash the duelist standing on it. Turned up,
+  // it repaints a white suit in the pad's colour and you lose the figure.
+  const glow = new PointLight(color, 1.3, 2.6, 2);
+  glow.position.y = 0.1;
   group.add(glow);
 
   return group;

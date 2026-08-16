@@ -94,8 +94,8 @@ export class SwingTrace {
    * wrong in a way that ruins the game: a swing is an ARC, so the average of
    * its recent velocity points somewhere back along the curve rather than
    * along the tangent you just let go of. A brisk 8 rad/s cut biases roughly
-   * 25° backward, which over seven metres is a miss of several metres — the
-   * attack visibly does not go where you swung.
+   * 25° backward, which across the arena is a miss by metres — the attack
+   * visibly does not go where you swung.
    *
    * Shrinking the window trades that bias for controller noise. Instead we fit
    * a QUADRATIC through three samples and take its derivative at the newest

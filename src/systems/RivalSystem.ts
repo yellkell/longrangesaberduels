@@ -391,7 +391,24 @@ export class RivalSystem extends createSystem({
     }
   }
 
-  private readonly restQuat = new Quaternion().setFromAxisAngle(new Vector3(1, 0, 0), -0.55);
+  /**
+   * The guard — and, because every swing winds back from it and is released on
+   * arrival, also the RELEASE pose.
+   *
+   * The arm hangs down the shoulder's local -Y, so the rest rotation is
+   * whatever turns -Y onto the stance below: up, out to the sword side, and
+   * forward. Two things depend on this not being arbitrary. It has to hold the
+   * blade somewhere a duelist four metres away can actually SEE it — an arm
+   * hanging at the side puts the saber behind a leg, and the wind-up glow that
+   * is supposed to warn you goes with it. And it has to stay well off the line
+   * of fire: the aiming maths in beginSwing divides out the component of the
+   * throw along the arm, which degenerates if the arm ever points at you. This
+   * stance sits about 50° off that line, with room to spare either way.
+   */
+  private readonly restQuat = new Quaternion().setFromUnitVectors(
+    new Vector3(0, -1, 0),
+    new Vector3(-0.5, 0.42, 0.55).normalize(),
+  );
   /** The swing's rotation axis, expressed in the SHOULDER'S PARENT frame —
    *  which is the frame `shoulder.quaternion` is actually interpreted in. */
   private readonly swingAxis = new Vector3(1, 0, 0);

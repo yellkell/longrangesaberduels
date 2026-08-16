@@ -61,8 +61,8 @@ const RADIAL_BIAS = 2.4;
  * centre and blended back to its natural profile by FLAT_OUTER. A landing pad
  * on a graded site is also just what this place would look like.
  */
-const FLAT_INNER = 5.5;
-const FLAT_OUTER = 15;
+const FLAT_INNER = 4;
+const FLAT_OUTER = 9;
 /** Where the arena's centre sits in world XZ — midway between the pads. */
 const ARENA_CENTRE_Z = -ARENA_GAP / 2;
 
@@ -134,7 +134,7 @@ function buildTerrain(seed: number): { mesh: Mesh; craters: Crater[]; heightAt: 
   // the one surface the whole fight is read against. Everything past that is
   // fair game, and the nearest rims land close enough to be cover you can see
   // the texture of.
-  const keepClear = ARENA_GAP / 2 + 3.4;
+  const keepClear = ARENA_GAP / 2 + 2.6;
   for (let i = 0; i < 120; i++) {
     const ang = rand() * Math.PI * 2;
     const dist = 5 + Math.pow(rand(), 0.55) * (TERRAIN_RADIUS - 16);

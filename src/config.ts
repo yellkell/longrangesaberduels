@@ -47,12 +47,19 @@ export const PLATFORM = {
 };
 
 /**
- * Centre-to-centre distance between the pads. This is the "LONG RANGE" of the
- * title: far enough that no swing can ever touch your rival, so the ONLY way
- * to land a hit is the thrown energy — and far enough that a slow arc gives
- * them real time to read it and step aside.
+ * Centre-to-centre distance between the pads.
+ *
+ * Two constraints pull against each other here. It has to be far enough that
+ * no swing can ever touch your rival — reach is about 1.5 m each (arm plus
+ * blade), so anything past 3 m makes the thrown energy the ONLY way to land a
+ * hit, which is the whole game. But every metre past that costs presence: at
+ * seven metres the opponent is a distant figurine, you cannot read the wind-up
+ * on their blade, and the duel stops feeling like a duel.
+ *
+ * So: close enough to be face to face, with a clear metre of margin over the
+ * longest possible swing.
  */
-export const ARENA_GAP = 7.5;
+export const ARENA_GAP = 4.2;
 
 /**
  * FIXED FOVEATED RENDERING, 0..1. The headset renders the periphery — where
@@ -72,7 +79,7 @@ export const PALETTE = {
   plasma: 0x46e8ff,
   plasmaDeep: 0x0a4d78,
   plasmaFoam: 0xd8fbff,
-  // The rival's liquid — furnace magenta, unmistakable at 7.5 m.
+  // The rival's liquid — furnace magenta, unmistakable across the gap.
   ember: 0xff4f8b,
   emberDeep: 0x6a0f34,
   emberFoam: 0xffd9e8,
@@ -229,8 +236,8 @@ export const ATTACK = {
   lifetime: 4.5,
   /**
    * Lunar gravity — 1.62 m/s², and the energy sheet is light, so it barely
-   * feels it. Enough droop over 7.5 m to make a long shot an arcing lead, not
-   * a hitscan line.
+   * feels it. Enough droop across the gap that a slow throw is a gentle arc
+   * rather than a hitscan line, without ever becoming a mortar shot.
    */
   gravity: 0.55,
   /** Collision half-thickness of the sheet. */
@@ -288,7 +295,7 @@ export const BOT = {
   dodgeLead: 1.1, // seconds of warning it reacts to
   /**
    * How accurately it aims (1 = perfect). Below 1 it scatters its throws by a
-   * few degrees, which at seven metres is the difference between a hit and a
+   * few degrees, which across the gap is the difference between a hit and a
    * near miss — so this is the single difficulty knob.
    */
   aim: 0.86,
@@ -311,6 +318,19 @@ export const BOT = {
    * reading the cut early is worth something.
    */
   aimAssist: 0.75,
-  arcSpeed: 9.5,
-  damageScale: 1,
+  /**
+   * Slower than it looks like it should be, on purpose. Across a short gap the
+   * flight time IS the reaction window — the only thing standing between the
+   * bot's release and your ribs — and a fast arc closes it before a human can
+   * move. At this speed a throw takes a little over half a second to arrive,
+   * which is enough to see the crescent's shape and pick a direction.
+   */
+  arcSpeed: 7.5,
+  /**
+   * The bot lands more of its throws than a person will, simply because it
+   * never fumbles a reload or mistimes a release. Scaled down so a clean run
+   * of its hits takes about six to put you down rather than four — enough
+   * pressure to matter, enough slack to learn the shake mid-fight.
+   */
+  damageScale: 0.8,
 };
